@@ -1,6 +1,6 @@
 # worktree-make 🐙
 
-An easier way to make git worktrees and branches for projects that have multiple repositories.
+An easier way to make [git worktrees](https://git-scm.com/docs/git-worktree) and branches for projects that have multiple repositories.
 
 - [Installation](#installation)
   - [Quick Install](#quick-install)
