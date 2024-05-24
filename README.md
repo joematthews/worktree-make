@@ -1,4 +1,4 @@
-# worktree-make
+# worktree-make 🐙
 
 An easier way to make worktrees and branches for projects that have multiple repositories.
 
