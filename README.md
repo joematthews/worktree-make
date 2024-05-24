@@ -73,7 +73,7 @@ cd project_backend
 worktree-make chore/666-refactor-users
 ```
 
-Will generate the following directories:
+...will generate the following directories:
 
 ```
 ../worktrees/chore/666-refactor-users/project_frontend
