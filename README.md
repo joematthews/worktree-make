@@ -7,6 +7,7 @@ An easier way to make [git worktrees](https://git-scm.com/docs/git-worktree) and
   - [Local Install](#local-install)
 - [Basic Usage](#basic-usage)
 - [Multiple Repositories](#multiple-repositories)
+- [Clean up](#clean-up-worktrees--branches)
 
 ## Installation
 
@@ -49,13 +50,21 @@ source ~/.zshrc
 To quickly create a worktree within a git repository, enter a branch name:
 
 ```sh
-cd project_repository
+cd project-repository
 worktree-make feat/555-products-backorder
 ```
 
-This will create a new directory at `../worktrees/feat/555-products-backorder/project_repository` and then change to that directory automatically with `pushd`. The `feat/555-products-backorder` branch will already by checked out.
+This will create a new directory at `../worktrees/feat/555-products-backorder/project-repository` and then change to that directory automatically with `pushd`. The `feat/555-products-backorder` branch will already by checked out.
 
 To return to the original repository use `popd`.
+
+## Specify 'From Branch'
+
+By default, worktree-make branches off of `main`, to branch off of a different branch, append the branch name to the end:
+
+```sh
+worktree-make feat/555-products-backorder master
+```
 
 ## Multiple Repositories
 
@@ -65,18 +74,40 @@ If the same exact branch name is chosen (ex: `chore/666-refactor-users`), then m
 
 ```sh
 # terminal 1
-cd project_frontend
+cd project-frontend
 worktree-make chore/666-refactor-users
 
 # terminal 2
-cd project_backend
+cd project-backend
 worktree-make chore/666-refactor-users
 ```
 
 ...will generate the following directories:
 
 ```
-../worktrees/chore/666-refactor-users/project_frontend
+../worktrees/chore/666-refactor-users/project-frontend
 
-../worktrees/chore/666-refactor-users/project_backend
+../worktrees/chore/666-refactor-users/project-backend
+```
+
+## Clean up worktrees & branches
+
+To clean up the worktrees simply delete the parent branch directory:
+
+```sh
+rm -r worktrees/chore/666-refactor-users
+```
+
+And then for each related repository, prune the worktrees:
+
+```sh
+# within project-frontend & project-backend
+git worktree prune
+```
+
+And then finally, delete the branch:
+
+```sh
+# within project-frontend & project-backend
+git branch -d chore/666-refactor-users
 ```
