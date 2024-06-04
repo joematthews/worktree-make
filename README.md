@@ -1,5 +1,10 @@
 # worktree-make 🐙
 
+```sh
+# arguments
+worktree-make <branch_create> [<branch_from>]
+```
+
 An easier way to make [git worktrees](https://git-scm.com/docs/git-worktree) and branches for projects that have multiple repositories.
 
 - [Installation](#installation)
@@ -60,7 +65,7 @@ To return to the original repository use `popd`.
 
 ## Specify 'From Branch'
 
-By default, worktree-make branches off of `main`, to branch off of a different branch, append the branch name to the end:
+By default, worktree-make branches off of `main`. To branch off of a different branch, append the branch name to the end:
 
 ```sh
 worktree-make feat/555-products-backorder master
@@ -105,7 +110,7 @@ And then for each related repository, prune the worktrees:
 git worktree prune
 ```
 
-And then finally, delete the branch:
+And then finally, delete the branch in each repository:
 
 ```sh
 # within project-frontend & project-backend
